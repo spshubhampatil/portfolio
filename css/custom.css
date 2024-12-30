@@ -9,3 +9,7 @@
   .progress {
     background-color: #2F2F2F;
 }
+
+.pt-3, .py-3 {
+  padding-top: 50px !important;
+}
