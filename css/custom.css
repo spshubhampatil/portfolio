@@ -13,3 +13,7 @@
 .pt-3, .py-3 {
   padding-top: 50px !important;
 }
+
+.progress-bar {  
+  background-color: #009E66;
+}
