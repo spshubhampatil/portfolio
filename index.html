@@ -444,16 +444,27 @@
               <div class="row">
                 <!-- Contact form-->
                 <div class="col-12 col-lg-7">
-                  <form class="contact-form" id="contact-form" action="https://wa.me/917756060855?text=">
+                  <form class="contact-form" id="contactForm">
                     <h4 class="content-title">Message Me</h4>
                     <div class="row">
-                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-name" type="text" name="name" placeholder="Name" required=""></div>
-                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-email" type="email" name="email" placeholder="Email" required=""></div>
+                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-fname" type="text" name="first_name" placeholder="First Name" required=""></div>
+                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-lname" type="text" name="last_name" placeholder="Last Name" required=""></div>
                       <div class="col-12 form-group"><input class="form-control" id="contact-subject" type="text" name="subject" placeholder="Subject" required=""></div>
                       <div class="col-12 form-group form-message"><textarea class="form-control" id="contact-message" name="message" placeholder="Message" rows="5" required=""></textarea></div>
-                      <div class="col-12 form-submit"><button class="btn button-main button-scheme" id="contact-submit" type="submit">Send Message</button>
+                      <div class="col-12 form-submit">
+                        <!-- <button class="btn button-main button-scheme" id="contact-submit" type="submit">Send Message</button> -->
+                        <button type="button" id="emailButton" 
+                                class="btn button-main button-scheme"> 
+                                    Send Email 
+                        </button>
                         <p class="contact-feedback"></p>
-                      </div>
+                      
+                       <!-- WhatsApp button using a WhatsApp link -->
+                        <button type="button" id="whatsappButton"
+                                class="btn button-main button-scheme">
+                                    Send WhatsApp
+                        </button>
+                        </div>
                     </div>
                   </form>
                 </div>
@@ -556,6 +567,81 @@
   <!-- removeIf(customizerDist)-->
   <script src="../customizer/main.js"></script>
   <!-- endremoveIf(customizerDist)-->
+
+  <script>
+        // Get the form and buttons
+        const form = document.getElementById('contactForm');
+        const emailButton = document.getElementById('emailButton');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const messageBox = document.getElementById('messageBox');
+
+        /**
+         * Displays a temporary message to the user.
+         * @param {string} message - The message to display.
+         * @param {boolean} isSuccess - True for a success message, false for an error message.
+         */
+        function showMessage(message, isSuccess) {
+            messageBox.textContent = message;
+            messageBox.className = `message-box visible ${isSuccess ? 'success' : 'error'}`;
+            setTimeout(() => {
+                messageBox.classList.remove('visible');
+            }, 3000);
+        }
+
+        // Event listener for the "Send Email" button
+        emailButton.addEventListener('click', (event) => {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Check if form is valid
+            if (form.checkValidity()) {
+                const formData = new FormData(form);
+                const firstName = encodeURIComponent(formData.get('first_name'));
+                const lastName = encodeURIComponent(formData.get('last_name'));
+                const subject = encodeURIComponent(formData.get('subject'));
+                const message = encodeURIComponent(formData.get('message'));
+
+                // The recipient email address. You must replace 'shubhampatil.org@gmail.com' with your actual email.
+                const recipientEmail = 'shubhampatil.org@gmail.com';
+                
+                // Construct the mailto: link
+                const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=First Name: ${firstName}%0D%0ALast Name: ${lastName}%0D%0AMessage:%0D%0A${message}`;
+                
+                // Open the user's default email client in a new window
+                window.open(mailtoLink, '_blank');
+            } else {
+                showMessage('Please fill in all the required fields.', false);
+            }
+        });
+
+        // Event listener for the "Send WhatsApp" button
+        whatsappButton.addEventListener('click', (event) => {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Check if form is valid
+            if (form.checkValidity()) {
+                const formData = new FormData(form);
+                const firstName = encodeURIComponent(formData.get('first_name'));
+                const lastName = encodeURIComponent(formData.get('last_name'));
+                const subject = encodeURIComponent(formData.get('subject'));
+                const message = encodeURIComponent(formData.get('message'));
+
+                // The recipient WhatsApp number. Must be in international format (e.g., '+15551234567').
+                // You must replace '+917756060855' with your actual WhatsApp number.
+                const whatsappNumber = '+917756060855';
+                
+                // Construct the WhatsApp link with pre-populated text
+                const whatsappText = `Hello! I have a new message from your website:%0A%0A*First Name:* ${firstName}%0A*Last Name:* ${lastName}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
+                
+                // Open the WhatsApp link in a new tab
+                window.open(whatsappLink, '_blank');
+            } else {
+                showMessage('Please fill in all the required fields.', false);
+            }
+        });
+    </script>
 </body>
 
 </html>
