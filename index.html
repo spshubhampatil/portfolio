@@ -29,7 +29,7 @@
   <!-- Custom CSS (Add your custom CSS styles to this file)-->
   <link rel="stylesheet" href="css/custom.css">
   <!-- removeIf(customizerDist)-->
-  <link rel="stylesheet" href="../customizer/main.css">
+  <!-- <link rel="stylesheet" href="../customizer/main.css"> -->
   <!-- endremoveIf(customizerDist)-->
 </head>
 
@@ -435,10 +435,10 @@
                   <form class="contact-form" id="contactForm">
                     <h4 class="content-title">Message Me</h4>
                     <div class="row">
-                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-fname" type="text" name="first_name" placeholder="First Name" required=""></div>
-                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-lname" type="text" name="last_name" placeholder="Last Name" required=""></div>
-                      <div class="col-12 form-group"><input class="form-control" id="contact-subject" type="text" name="subject" placeholder="Subject" required=""></div>
-                      <div class="col-12 form-group form-message"><textarea class="form-control" id="contact-message" name="message" placeholder="Message" rows="5" required=""></textarea></div>
+                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-fname" type="text" name="first_name" placeholder="First Name" required></div>
+                      <div class="col-12 col-md-6 form-group"><input class="form-control" id="contact-lname" type="text" name="last_name" placeholder="Last Name" required></div>
+                      <div class="col-12 form-group"><input class="form-control" id="contact-subject" type="text" name="subject" placeholder="Subject" required></div>
+                      <div class="col-12 form-group form-message"><textarea class="form-control" id="contact-message" name="message" placeholder="Message" rows="5" required></textarea></div>
                       <div class="col-12 form-submit" style="display: flex;justify-content: center;gap: 10px;">
                         <!-- <button class="btn button-main button-scheme" id="contact-submit" type="submit">Send Message</button> -->
                         <button type="button" id="emailButton"
@@ -454,6 +454,7 @@
                         </div>
                     </div>
                   </form>
+                  <div id="messageBox" class="message-box" style="text-align:center;margin-top:10px;"></div>
                 </div>
                 <!-- Contact info-->
                 <div class="col-12 col-lg-5">
@@ -515,9 +516,6 @@
   <script src="js/main.js"></script>
   <!-- Custom JS (Add your custom JS scripts to this file)-->
   <script src="js/custom.js"></script>
-  <!-- removeIf(customizerDist)-->
-  <script src="../customizer/main.js"></script>
-  <!-- endremoveIf(customizerDist)-->
 
   <script>
         // Get the form and buttons
